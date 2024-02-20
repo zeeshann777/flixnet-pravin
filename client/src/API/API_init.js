@@ -34,6 +34,17 @@ class database
         const data = await responce.json()
         return data
     }
+    availableshows = async () => {
+        const responce = await fetch("http://localhost:3000/api/v1/database/available-shows", 
+        {
+            method:"GET",
+            headers: {
+                'Content-Type':'application/json'
+            }
+        })
+        const data = await responce.json()
+        return data
+    }
 }
 
 class auth
