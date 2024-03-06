@@ -6,13 +6,13 @@ class database
             method:"GET",
             headers: {
                 'Content-Type':'application/json'
-            }
+            }   
         })
         const data = await responce.json()
         return data
     }
     userupdate = async () => {
-        const responce = await fetch("http://localhost:3000/api/v1/database/update-userinfo", 
+        const responce = await fetch("http://localhost:3000/api/v1/database/    ", 
         {
             method:"POST",
             headers: {

@@ -1,26 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Movieshowcase } from './Smallcomponent'
 import { database } from '../API/API_init'
 
 
-const fetchdata = async (setshows) => {
 
-    // console.log("i called")
-    const d = new database();
-    const data = await d.availableshows();
-    const temparry = [];
-    for (let i = 0; i < data.Number; i++) {
-        // setshows(<Movieshowcase />);
-        temparry.push(<Movieshowcase/>)
-    }
-    setshows(temparry);
-}
 
 
 const Homepage = () => {
 
     const [shows, setshows] = useState([<></>]);
-    fetchdata(setshows);
+    useEffect(() => {
+        const fetchdata = async () => {
+
+            console.log("i called")
+            const d = new database();
+            const data = await d.availableshows();
+            console.log(data.shows[0][1]["thumbnail"])
+            const temparry = [];
+            
+            const len = Object.keys(data.shows[0]).length;
+
+            for (let i = 0; i < len; i++) {
+                // setshows(<Movieshowcase />);
+                console.log(len)
+                temparry.push(<Movieshowcase   moviename = {data.shows[0][i + 1]["name"]}/>)
+            }
+            setshows(temparry);
+        }
+        fetchdata();
+    },[] )
+    
     return (
         <div>
             <section className="text-gray-600 body-font">
