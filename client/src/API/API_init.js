@@ -12,7 +12,7 @@ class database
         return data
     }
     userupdate = async () => {
-        const responce = await fetch("http://localhost:3000/api/v1/database/    ", 
+        const responce = await fetch("http://localhost:3000/api/v1/database/", 
         {
             method:"POST",
             headers: {
@@ -49,27 +49,21 @@ class database
 
 class auth
 {
-    signup = async () => {
+    signup = async (email, password) => {
+        const senddata = {
+            email: email,
+            password : password
+        }
         const responce = await fetch("http://localhost:3000/api/v1/auth/create-user", 
         {
             method:"POST",
             headers: {
                 'Content-Type':'application/json'
-            }
-        })
+            },
+            body: JSON.stringify(senddata)
+        });
         const data = await responce.json()
         
-    }
-    login = async () => {
-        const responce = await fetch("http://localhost:3000/api/v1/auth/login-user", 
-        {
-            method:"POST",
-            headers: {
-                'Content-Type':'application/json'
-            }
-        })
-        const data = await responce.json()
-        return data
     }
 }
 
